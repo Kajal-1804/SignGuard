@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            background: #2575fc;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #6a11cb;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        .navbar h1 {
+            color: white;
+            font-size: 1.5em;
+            margin: 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 5px 10px;
+            border: 1px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-right: 50px;
+        }
+
+        .navbar a:hover {
+            background-color: white;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>SignGuard</h1>
+        <a href="/login/">Login</a>
+    </div>
+    <h2>Register</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+    <script>
+        // Example of dynamic interactivity: Smooth color transition
+        document.body.style.transition = "background 2s ease-in-out";
+
+        setInterval(() => {
+            document.body.style.background = 
+                document.body.style.background === "linear-gradient(135deg, #6a11cb, #2575fc)"
+                ? "linear-gradient(135deg, #ff7e5f, #feb47b)"
+                : "linear-gradient(135deg, #6a11cb, #2575fc)";
+        }, 5000);
+    </script>
+
+    
+</body>
+</html>

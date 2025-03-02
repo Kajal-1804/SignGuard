@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.8em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 1.2em;
+            color: red;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1em;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input {
+            padding: 8px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        form button {
+            padding: 10px;
+            background: #2575fc;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #6a11cb;
+        }
+        .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.navbar h1 {
+    font-size: 2em;
+    margin: 0;
+    color: white;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background: #ff4747;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+    background: #ff1a1a;
+}
+    </style>
+</head>
+<body>
+    <h1>Signature Verification</h1>
+    <div class="navbar">
+        <h1>SignGuard</h1>
+        <a href="/register/" class="logout-button">Logout</a>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="signature1">Upload First Signature:</label>
+        <input type="file" name="signature1" required><br><br>
+        <label for="signature2">Upload Second Signature:</label>
+        <input type="file" name="signature2" required><br><br>
+        <button type="submit">Verify</button>
+    </form>
+
+    {% if result %}
+        <h2>Result: {{ result }}</h2>
+        {% if similarity_score is not None %}
+            <p>Similarity Score: {{ similarity_score }}</p>
+        {% endif %}
+    {% endif %}
+
+    {% if error %}
+        <h3 style="color:red;">Error: {{ error }}</h3>
+    {% endif %}
+</body>
+</html>

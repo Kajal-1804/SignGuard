@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignGuard - Secure Your Digital Signatures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #a18cd1, #fbc2eb);
+            color: #333;
+            text-align: center;
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+            height: 100vh; /* Full viewport height */
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent navbar */
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000; 
+        }
+
+        .navbar h1 {
+            color: #6a11cb; /* Purple text for the navbar */
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .navbar a {
+            color: #6a11cb; /* Purple navbar links */
+            text-decoration: none;
+            font-size: 1em;
+            padding: 5px 10px;
+            border: 1px solid #6a11cb; /* Purple border for links */
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-right: 50px;
+        }
+
+        .navbar a:hover {
+            background-color: #6a11cb; /* Purple on hover */
+            color: white;
+        }
+
+        .hero {
+            padding: 225px 20px 20px;
+            color: white;
+            margin-top: 0; /* Adjust for navbar */
+            transition: transform 0.3s ease;
+            position: relative; /* Ensure it stays above other content */
+            z-index: 10;
+            margin-bottom: 80px;
+        }
+
+        .svg-container {
+            position: relative; /* Ensure it stays within the flow of the content */
+            z-index: 5;
+            margin-top: 40px; /* Keep SVG behind the hero section */
+        }
+
+        .cta-btn {
+            padding: 15px 30px;
+            background: #6a11cb; /* Purple button */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Add this to your existing styles */
+        .get-started-btn {
+            display: inline-block; /* Ensures it's treated like a button */
+            padding: 15px 30px;
+            background-color: #6a11cb; /* Purple background */
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            border: 2px solid #6a11cb; /* Purple border */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer; 
+            z-index: 20;
+}
+
+        .get-started-btn:hover {
+            background-color: #ff758c; /* Light pink on hover */
+            color: white;
+            transform: scale(1.05); /* Slight zoom effect */
+}
+
+        .get-started-btn:active {
+            transform: scale(0.98); /* Slight shrink effect when clicked */
+}
+.about-section {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            text-align: justify;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-section.show {
+            opacity: 1;
+        }
+
+        .about-content {
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-between; /* Space between the text and the SVG */
+        align-items: center; /* Align both the text and the SVG vertically */
+        }
+
+        .svg-right {
+        margin-left: 20px; /* Space between the paragraph and the SVG */
+            }
+
+        .svg-right img {
+            width: 200px; /* Adjust width as needed */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>SignGuard</h1>
+        <div>
+            <a href="/login/" class="login-btn">Login</a>
+            <a href="/about/" class="about-us-btn">About Us</a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h2>Welcome to SignGuard!</h2>
+        <a href="/register/" class="register-btn get-started-btn">Get Started</a>
+    </div>
+    <div class="svg-container">
+        {% load static %}
+        <img src="{% static 'images/svgex.svg' %}" alt="SVG Example" width="200" height="150">
+    </div>
+    <footer>
+        <p>&copy; 2025 SignGuard. All rights reserved.</p>
+    </footer>
+
+    <div class="about-section" id="about-section">
+        <div class="about-content">
+            <p>
+             Join us today and experience peace of mind with every signature you make!
+            </p>
+            <div class="svg-right">
+                <img src="{% static 'images/Agreement.svg' %}" alt="New SVG" width="200" height="200">
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+         window.addEventListener('load', function() {
+            const aboutSection = document.getElementById('about-section');
+            aboutSection.classList.add('show');
+        });
+
+        window.addEventListener('scroll', function() {
+            let scrollPosition = window.scrollY;
+            let hero = document.querySelector('.hero');
+            hero.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+        });
+    </script>
+</body>
+</html>
