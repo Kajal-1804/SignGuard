@@ -1,4 +1,5 @@
 import tensorflow as tf
+#from tensorflow.keras import backend as K
 from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
 from django.http import HttpResponse
@@ -48,7 +49,7 @@ def login_view(request):
 
 
 # Load the model once when the server starts
-MODEL_PATH = os.path.join(os.path.dirname(__file__), 'ml_model', 'signature_model_v3.keras')
+MODEL_PATH = os.path.join(os.path.dirname(__file__), 'ml_model', 'signature_model_04.keras')
 keras.config.enable_unsafe_deserialization()
 
 # Register the custom function
